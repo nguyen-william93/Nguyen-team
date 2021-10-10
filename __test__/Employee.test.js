@@ -6,8 +6,8 @@ test("create an Employee object", () => {
     const employee = new Employee ("NANA", 0, "nanaiscute@gmail.com");
 
     expect(employee.name).toBe("NANA");
-    expect(employee.id).toBe(1);
-    expect(employee.email).toBe("nanaiscute@gmail.com");
+    expect(employee.id).toEqual(expect.any(Number));
+    expect(employee.email).toEqual(expect.any(String));
 })
 
 test("testing all the get method", () => {
