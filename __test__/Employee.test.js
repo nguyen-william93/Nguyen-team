@@ -3,7 +3,7 @@ const {test} = require("@jest/globals");
 
 
 test("create an Employee object", () => {
-    const employee = new Employee ("NANA", 1, "nanaiscute@gmail.com");
+    const employee = new Employee ("NANA", 0, "nanaiscute@gmail.com");
 
     expect(employee.name).toBe("NANA");
     expect(employee.id).toBe(1);
@@ -11,7 +11,7 @@ test("create an Employee object", () => {
 })
 
 test("testing all the get method", () => {
-    const employee = new Employee ("NANA", 1, "nanaiscute@gmail.com");
+    const employee = new Employee ("NANA", 0, "nanaiscute@gmail.com");
 
     expect(employee.getName()).toEqual(employee.name);
     expect(employee.getId()).toEqual(employee.id);
