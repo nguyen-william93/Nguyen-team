@@ -14,9 +14,9 @@ test("create a manager object", () => {
 test("testing get method", () => {
     const manager = new Manager("NANA", 1, "nanaistheBoss@gmail.com", 1018);
 
-    expect(manager.getName()).toBe("NANA")
-    expect(manager.getId()).toBe(1);
-    expect(manager.getEmail()).toBe("nanaistheBoss@gmail.com");
-    expect(manager.officeNumber).toBe(1018);
+    expect(manager.getName()).toBe(manager.name)
+    expect(manager.getId()).toBe(manager.id);
+    expect(manager.getEmail()).toBe(manager.email);
+    expect(manager.getOfficeNumber()).toBe(manager.officeNumber);
     expect(manager.getRole()).toBe("Manager");
 });

@@ -14,9 +14,9 @@ test("create a intern object", () => {
 test("testing get method", () => {
     const intern = new Intern("NANA", 1, "nanaistheBoss@gmail.com", "UT");
 
-    expect(intern.getName()).toBe("NANA")
-    expect(intern.getId()).toBe(1);
-    expect(intern.getEmail()).toBe("nanaistheBoss@gmail.com");
-    expect(intern.getSchool()).toBe("UT");
+    expect(intern.getName()).toBe(intern.name);
+    expect(intern.getId()).toBe(intern.id);
+    expect(intern.getEmail()).toBe(intern.email);
+    expect(intern.getSchool()).toBe(intern.school);
     expect(intern.getRole()).toBe("Intern");
 });

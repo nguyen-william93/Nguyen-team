@@ -14,9 +14,9 @@ test("create a engineer object", () => {
 test("testing get method", () => {
     const engineer = new Engineer("NANA", 1, "nanaistheBoss@gmail.com", "nguyen-william93");
 
-    expect(engineer.getName()).toBe("NANA")
-    expect(engineer.getId()).toBe(1);
-    expect(engineer.getEmail()).toBe("nanaistheBoss@gmail.com");
-    expect(engineer.getGitHub()).toBe("nguyen-william93");
+    expect(engineer.getName()).toBe(engineer.name)
+    expect(engineer.getId()).toBe(engineer.id);
+    expect(engineer.getEmail()).toBe(engineer.email);
+    expect(engineer.getGitHub()).toBe(engineer.github);
     expect(engineer.getRole()).toBe("Engineer");
 });

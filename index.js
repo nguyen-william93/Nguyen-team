@@ -1,4 +1,11 @@
-const question = [
+const inquirer = require("inquirer");
+const pageTemplate = require("./src/page-template");
+const writeFile = require("./src/generated-site");
+
+
+
+
+const managerQuestion = [
     {
         type: "text",
         name: "name",
@@ -26,3 +33,38 @@ const question = [
         default: false
     },
 ];
+
+const promptManager = () => {
+    return inquirer.prompt(question)
+};
+
+const promptTeam = teamData => {
+    if (!teamData.team){
+        teamData.team = []
+    }
+
+    console.log (`
+    ===================
+    ADD NEW TEAM MEMBER
+    ===================
+    `)
+
+    return inquirer.prompt({
+
+    })
+};
+
+promptManager()
+    .then (promptTeam)
+    .then (teamData => {
+        return pageTemplate(teamData);
+    })
+    .then (pageHTML  => {
+        return writeFile(pageHTML);
+    })
+    .then (writeFileReponse => {
+        console.log(writeFileReponse);
+    })
+    .catch(err =>{
+        console.log(err)
+    });
