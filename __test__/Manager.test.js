@@ -18,4 +18,5 @@ test("testing get method", () => {
     expect(manager.getId()).toBe(1);
     expect(manager.getEmail()).toBe("nanaistheBoss@gmail.com");
     expect(manager.officeNumber).toBe(1018);
+    expect(manager.getRole()).toBe("Manager");
 });
