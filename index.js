@@ -2,9 +2,6 @@ const inquirer = require("inquirer");
 const pageTemplate = require("./src/page-template");
 const writeFile = require("./src/generated-site");
 
-
-
-
 const managerQuestion = [
     {
         type: "text",
