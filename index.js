@@ -115,16 +115,18 @@ const promptUser = employeeArr => {
     } else {
         return inquirer.prompt(roleQuestion)
             .then(response => {
+                //checking the role
+                //base on the role then the program will prompt the correct set of question and create a corresponding object
                 switch (response.role.toString()) {
                     case "Engineer":
                         return inquirer.prompt(engineerQuestion)
                             .then(data => {
                                 data.name = new Engineer(data.name, data.id, data.email, data.github)
                                 employeeArr.push(data.name);
-                                if (data.confirmAddMember) {
+                                if (data.confirmAddMember) { //if the user wanna add more employee then go back to prompt the user
                                     return promptUser(employeeArr);
                                 } else {
-                                    return employeeArr;
+                                    return employeeArr; // if not then just return the employeeArr to be call in the next call back function
                                 }
                             });
                         break;
@@ -143,10 +145,10 @@ const promptUser = employeeArr => {
                     }
                 })
             .then(teamData => {
-                return template(teamData);
+                return template(teamData); //creating a template base on the employeeArr data
             })
             .then (htmlPage => {
-                return writeFile(htmlPage);
+                return writeFile(htmlPage); //write the template to a file
             })
             .catch(err => {
                 console.log(err);
@@ -154,6 +156,7 @@ const promptUser = employeeArr => {
     }
 }
 
+//intialize the function and start the prompt
 function init() {
     const employeeArr = [];
     promptUser(employeeArr);
