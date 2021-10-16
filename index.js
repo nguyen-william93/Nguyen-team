@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const pageTemplate = require("./src/page-template");
+const template = require("./src/page-template.js");
 const writeFile = require("./src/generated-site");
 
 const Manager = require("./lib/Manager");
@@ -10,9 +10,9 @@ const Intern = require("./lib/Intern");
 const roleQuestion = [
     {
         type: "checkbox",
-        name: "type",
+        name: "role",
         message: "Which role would you like to add?",
-        choices: ["Manager", "Engineer", "Intern"]
+        choices: ["Engineer", "Intern"]
     },
 ]
 
@@ -37,12 +37,6 @@ const managerQuestion = [
         name: "office_number",
         message: "Enter your office number: "
     },
-    {
-        type: "confirm",
-        name: "confirmAddMember",
-        message: "Would you like to add a team member?",
-        default: false
-    }
 ];
 
 const engineerQuestion = [
@@ -74,7 +68,7 @@ const engineerQuestion = [
     },
 ];
 
-const internPrompt = [
+const internQuestion = [
     {
         type: "text",
         name: "name",
@@ -116,22 +110,47 @@ const promptUser = employeeArr => {
             .then(data => {
                 data.name = new Manager(data.name, data.id, data.email, data.office_number);
                 employeeArr.push(data.name);
-                promptUser(employeeArr);
+                return promptUser(employeeArr);
             })
     } else {
         return inquirer.prompt(roleQuestion)
-            .then(role => {
-                return inquirer.prompt(engineerQuestion);
-            })
             .then(response => {
-                console.log(response);
-                if (response.confirmAddMember){
-                    promptUser(employeeArr);
-                } else {
-                    const indexHTML = pageTemplate(employeeArr);
-                    writeFile("./dist/index.html")
-                }
-            });
+                switch (response.role.toString()) {
+                    case "Engineer":
+                        return inquirer.prompt(engineerQuestion)
+                            .then(data => {
+                                data.name = new Engineer(data.name, data.id, data.email, data.github)
+                                employeeArr.push(data.name);
+                                if (data.confirmAddMember) {
+                                    return promptUser(employeeArr);
+                                } else {
+                                    return employeeArr;
+                                }
+                            });
+                        break;
+                    case "Intern":
+                        return inquirer.prompt(internQuestion)
+                            .then(data => {
+                                data.name = new Intern(data.name, data.id, data.email, data.school);
+                                employeeArr.push(data.name);
+                                if (data.confirmAddMember) {
+                                    return promptUser(employeeArr);
+                                } else {
+                                    return employeeArr;
+                                }
+                            });
+                        break;
+                    }
+                })
+            .then(teamData => {
+                return template(teamData);
+            })
+            .then (htmlPage => {
+                return writeFile(htmlPage);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 }
 
