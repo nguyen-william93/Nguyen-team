@@ -6,13 +6,14 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
+
 //set of question for each role
 const roleQuestion = [
     {
         type: "checkbox",
         name: "role",
         message: "Which role would you like to add?",
-        choices: ["Engineer", "Intern"]
+        choices: ["Engineer", "Intern", "Janitor"]
     },
 ]
 
@@ -97,13 +98,10 @@ const internQuestion = [
     }
 ]
 
-
 const promptUser = employeeArr => {
     //if the array is zero then we will prompt for the manager position first
     //if the array is not zero then we will prompt for the role.
-    //construct an object base on the role with the information being pass in
-    //if confirm add more member is true then we will keep it going in a loop
-    //if confirm add more member is false then we will just call on the page template function then call the generate site function to write up the index.html file
+    //prompt user --> determine the role --> create an objet base on that role --> save that object into the array 
 
     if (employeeArr.length === 0) {
         return inquirer.prompt(managerQuestion)
@@ -117,16 +115,17 @@ const promptUser = employeeArr => {
             .then(response => {
                 //checking the role
                 //base on the role then the program will prompt the correct set of question and create a corresponding object
-                switch (response.role.toString()) {
+                console.log(response);
+                switch (response.role.toString()) { 
                     case "Engineer":
                         return inquirer.prompt(engineerQuestion)
                             .then(data => {
                                 data.name = new Engineer(data.name, data.id, data.email, data.github)
                                 employeeArr.push(data.name);
-                                if (data.confirmAddMember) { //if the user wanna add more employee then go back to prompt the user
+                                if (data.confirmAddMember) {
                                     return promptUser(employeeArr);
                                 } else {
-                                    return employeeArr; // if not then just return the employeeArr to be call in the next call back function
+                                    return employeeArr;
                                 }
                             });
                         break;
