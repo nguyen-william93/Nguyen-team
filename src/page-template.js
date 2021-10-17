@@ -8,7 +8,7 @@ const managerCard = manangerObj => {
                 <h1> ${manangerObj.getName()} </h1>
                 <h2> ${manangerObj.getRole()}</h2>
             </div>
-            <div class = "card-body>
+            <div class = "card-body">
                 <ul>
                     <li> ID: ${manangerObj.getId()} </li>
                     <li> Email: ${manangerObj.getEmail()}</li>
@@ -28,7 +28,7 @@ const engineerCard = engineerObj => {
                 <h1> ${engineerObj.getName()} </h1>
                 <h2> ${engineerObj.getRole()}</h2>
             </div>
-            <div class = "card-body>
+            <div class = "card-body">
                 <ul>
                     <li> ID: ${engineerObj.getId()} </li>
                     <li> Email: ${engineerObj.getEmail()}</li>
@@ -48,7 +48,7 @@ const internCard = internObj => {
                 <h1> ${internObj.getName()} </h1>
                 <h2> ${internObj.getRole()}</h2>
             </div>
-            <div class = "card-body>
+            <div class = "card-body">
                 <ul>
                     <li> ID: ${internObj.getId()} </li>
                     <li> Email: ${internObj.getEmail()}</li>
@@ -78,27 +78,26 @@ const generateCardSection = employeeObj => {
 const pageTemplate = templateData => {
     console.log(templateData);
     return `
-    <!DOCTYPE html>
-    <html>
-
-        <head>
-            <title>Page</title>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        </head>
-        <body>
-            <header class = "containter>
-                <div class = "row">
-                    <h1> My Team </h1>
-                </div>
-            </header>
-            <main class = "container">
-                ${generateCardSection(templateData)}
-            </main>
-        </body>
-    </html>
-    `
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   </head>
+    <body>
+        <header class = "containter">
+            <div class = "row">
+                <h1> My Team </h1>
+            </div>
+        </header>
+         <main class = "container">
+            ${generateCardSection(templateData)}
+        </main>
+    </body>
+</html>
+`
 };
 
 module.exports = pageTemplate;
