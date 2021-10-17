@@ -51,7 +51,7 @@ const internCard = internObj => {
             <div class = "card-body>
                 <ul>
                     <li> ID: ${internObj.getId()} </li>
-                    <li> Email: ${internObj.getEmai()}</li>
+                    <li> Email: ${internObj.getEmail()}</li>
                     <li> School: ${internObj.getSchool()}</li>
                 </ul>
             </div>
@@ -61,7 +61,8 @@ const internCard = internObj => {
 };
 
 const generateCardSection = employeeObj => {
-    return employeeObj.forEach( employee => {
+    console.log(employeeObj);
+    return employeeObj.map( employee => {
         switch (employee.getRole()){
             case "Manager":
                 return managerCard(employee);
@@ -71,6 +72,7 @@ const generateCardSection = employeeObj => {
                 return internCard(employee);
         }
     })
+    .join("\n")
 };
 
 const pageTemplate = templateData => {
