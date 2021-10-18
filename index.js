@@ -13,7 +13,7 @@ const roleQuestion = [
         type: "checkbox",
         name: "role",
         message: "Which role would you like to add?",
-        choices: ["Engineer", "Intern", "Janitor"]
+        choices: ["Engineer", "Intern"]
     },
 ]
 
