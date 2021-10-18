@@ -1,68 +1,59 @@
 const Employee = require("../lib/Employee");
 
 const managerCard = manangerObj => {
-    return `
-    <div class = "container">
-        <div class = "card">
-            <div class = "card-header">
-                <h1> ${manangerObj.getName()} </h1>
-                <h2> ${manangerObj.getRole()}</h2>
+    return `<div class = "card">
+                <div class = "card-header">
+                    <h1> ${manangerObj.getName()} </h1>
+                    <h2> ${manangerObj.getRole()}</h2>
+                </div>
+                <div class = "card-body">
+                    <ul>
+                        <li> ID: ${manangerObj.getId()} </li>
+                        <li> Email: ${manangerObj.getEmail()}</li>
+                        <li> Office Number: ${manangerObj.getOfficeNumber()}</li>
+                    </ul>
+                </div>
             </div>
-            <div class = "card-body">
-                <ul>
-                    <li> ID: ${manangerObj.getId()} </li>
-                    <li> Email: ${manangerObj.getEmail()}</li>
-                    <li> Office Number: ${manangerObj.getOfficeNumber()}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
     `
 };
 
 const engineerCard = engineerObj => {
-    return `
-    <div class = "container">
-        <div class = "card">
-            <div class = "card-header">
-                <h1> ${engineerObj.getName()} </h1>
-                <h2> ${engineerObj.getRole()}</h2>
+    return `        <div class = "card">
+                <div class = "card-header">
+                    <h1> ${engineerObj.getName()} </h1>
+                    <h2> ${engineerObj.getRole()}</h2>
+                </div>
+                <div class = "card-body">
+                    <ul>
+                        <li> ID: ${engineerObj.getId()} </li>
+                        <li> Email: ${engineerObj.getEmail()}</li>
+                        <li> Github: ${engineerObj.getGitHub()}</li>
+                    </ul>
+                </div>
             </div>
-            <div class = "card-body">
-                <ul>
-                    <li> ID: ${engineerObj.getId()} </li>
-                    <li> Email: ${engineerObj.getEmail()}</li>
-                    <li> Github: ${engineerObj.getGitHub()}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
     `
 };
 
 const internCard = internObj => {
-    return `
-    <div class = "container">
-        <div class = "card">
-            <div class = "card-header">
-                <h1> ${internObj.getName()} </h1>
-                <h2> ${internObj.getRole()}</h2>
+    return `        <div class = "card">
+                <div class = "card-header">
+                    <h1> ${internObj.getName()} </h1>
+                    <h2> ${internObj.getRole()}</h2>
+                </div>
+                <div class = "card-body">
+                    <ul>
+                        <li> ID: ${internObj.getId()} </li>
+                        <li> Email: ${internObj.getEmail()}</li>
+                        <li> School: ${internObj.getSchool()}</li>
+                    </ul>
+                </div>
             </div>
-            <div class = "card-body">
-                <ul>
-                    <li> ID: ${internObj.getId()} </li>
-                    <li> Email: ${internObj.getEmail()}</li>
-                    <li> School: ${internObj.getSchool()}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
     `
 };
 
 const generateCardSection = employeeObj => {
     console.log(employeeObj);
-    return employeeObj.map( employee => {
+    return `${employeeObj.map( employee => {
         switch (employee.getRole()){
             case "Manager":
                 return managerCard(employee);
@@ -72,13 +63,13 @@ const generateCardSection = employeeObj => {
                 return internCard(employee);
         }
     })
-    .join("\n")
+    .join("")}
+    `
 };
 
 const pageTemplate = templateData => {
     console.log(templateData);
-    return `
-<!DOCTYPE html>
+    return `<!DOCTYPE html>
 <html>
     <head>
         <title>Page</title>
